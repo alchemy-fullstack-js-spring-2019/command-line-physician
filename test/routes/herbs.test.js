@@ -1,3 +1,4 @@
+require('dotenv').config();
 const app = require('../../lib/app');
 const request = require('supertest');
 const mongoose = require('mongoose');
@@ -21,7 +22,7 @@ describe('herb routes', () => {
     return seedData();
   });
 
-  
+
   afterAll(() => {
     return mongoose.connection.close();
   });
@@ -51,7 +52,7 @@ describe('herb routes', () => {
             medicinal_uses: 'cures everything',
             description: 'is a smart herb',
             user: userId
-            
+
           })
           .then(res => {
             expect(res.body).toEqual({
@@ -92,7 +93,7 @@ describe('herb routes', () => {
             medicinal_uses: 'cures everything',
             description: 'is a smart herb',
             user: userId
-            
+
           })
           .then(() => {
             return request(app)
@@ -221,7 +222,8 @@ describe('herb routes', () => {
       })
       .then(res => {
         expect(res.body).toEqual({
-          herb: { name: expect.any(String),
+          herb: {
+            name: expect.any(String),
             category: expect.any(String),
             latin_name: expect.any(String),
             medicinal_uses: expect.any(String),
@@ -361,11 +363,12 @@ describe('herb routes', () => {
             medicinal_uses: expect.any(String),
             description: expect.any(String)
           },
-          unwastedHerbs:[{ 
+          unwastedHerbs: [{
             unwastedExpiration: expect.any(String),
             unwastedPostedDate: expect.any(String),
             unwastedTitle: testerHerb.name.toLowerCase(),
-            unwastedUser: expect.any(String) }
+            unwastedUser: expect.any(String)
+          }
           ]
         });
       });

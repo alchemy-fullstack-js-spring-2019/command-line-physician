@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { getHerb } = require('../../lib/data/data-helpers');
 const app = require('../../lib/app');
 const request = require('supertest');
@@ -12,7 +13,7 @@ describe('faves routes', () => {
       useNewUrlParser: true
     });
   });
-  
+
   beforeEach(() => {
     return mongoose.connection.dropDatabase();
   });
@@ -38,7 +39,7 @@ describe('faves routes', () => {
     let userId = null;
 
     const testerHerb = await getHerb();
-    
+
     return request(app)
       .post('/api/v1/auth/signup')
       .send({
@@ -135,7 +136,7 @@ describe('faves routes', () => {
     let userId = null;
 
     const testerHerb = await getHerb();
-    
+
     return request(app)
       .post('/api/v1/auth/signup')
       .send({
